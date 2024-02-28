@@ -1,0 +1,55 @@
+﻿@model IEnumerable< Department>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Index</title>
+</head>
+<body>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> Id</th>
+
+                <th>Name</th>
+
+                <th> Operations</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td> @department.DeptId</td>
+                    <td>@department.DeptName</td>
+                    <td>
+                        <a asp-action="details" asp-controller="department" asp-route-id="@department.DeptId" class="btn btn-info" >Details</a>
+                        <a asp-action="edit" asp-controller="department" asp-route-id="@department.DeptId" class="btn btn-success">Update</a>
+                        <a asp-action="delete" asp-controller="department" onclick="return confirm('Are you sure you want to delete this department?')" asp-route-id="@department.DeptId" class="btn btn-danger">Delete</a>
+                        <a asp-action="showCourses" asp-controller="departmentcourse" asp-route-id="@department.DeptId" class="btn btn-success">show Courses</a>
+                        <a asp-action="manageCourses" asp-controller="departmentcourse" asp-route-id="@department.DeptId" class="btn btn-success">manage Courses</a>
+
+
+
+
+                    </td>
+                
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class=" btn btn-success" asp-action="create" asp-controller="department">create</a>
+
+</body>
+</html>
+

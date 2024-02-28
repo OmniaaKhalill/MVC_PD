@@ -1,0 +1,42 @@
+﻿@model DepartmentCourse
+@{
+    Layout = null;
+    SelectList CrsInDpt = new SelectList(Model.CrsInDpt, "Id", "Crs_Name");
+    SelectList CrsNotInDpt = new SelectList(Model.CrsNotInDpt, "Id", "Crs_Name");
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>manageCourses</title>
+</head>
+<body>
+ 
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="coursesToRemove">Courses to Remove</label>
+                <select multiple asp-items="CrsInDpt" name="coursesToRemove" class="form-control">
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="coursesToAdd">Courses to Add</label>
+                <select multiple asp-items="CrsNotInDpt" name="coursesToAdd" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <input type="submit" value="Change Courses" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

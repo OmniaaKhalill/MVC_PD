@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Course>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>Index</title>
+</head>
+<body>
+    <DIV> COURSES</DIV>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+              
+                <th>Name</th>
+
+                <th> Duration</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var crs in Model)
+            {
+                <tr>
+
+                    <td>@crs.Crs_Name</td>
+                    <td>@crs.Duration</td>
+
+             
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class=" btn btn-success" asp-action="create" asp-controller="course">create</a>
+
+</body>
+</html>

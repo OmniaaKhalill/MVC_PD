@@ -1,0 +1,44 @@
+﻿@model Student
+@{
+    Layout = null;
+    SelectList Deptlst = new SelectList(ViewBag.Deptlst, "DeptId", "DeptName", 1);
+}
+
+
+
+        
+        <br><br>
+        <label asp-for="Name" class="form-control"></label>
+        <input asp-for="Name" class="form-control">
+<span asp-validation-for="Name" ></span>
+<br>
+<br
+
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control">
+<span asp-validation-for="Age" ></span>
+<br>
+<br
+
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control">
+<span asp-validation-for="Email" ></span>
+<br>
+<br
+
+
+        <label asp-for="DeptNo"></label>
+        <select asp-for="DeptNo" asp-items="Deptlst" class="form-control">
+            <option> select department</option>
+     
+        </select>
+<span asp-validation-for="DeptNo" ></span>
+
+        <br><br>
+
+
+
+
+
+    

@@ -1,0 +1,41 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Create</title>
+</head>
+<body>
+
+    <form method="post">
+
+        <label asp-for="DeptId"></label>
+        <input asp-for="DeptId" /><br><br>
+
+        <label asp-for="DeptName"></label>
+        <input asp-for="DeptName"><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>
+
+
+ @* //name= must be the same as the controls so the model binder can bind the value
+      <input type="text" name="DeptName" value="@Model?.DeptName"><br><br>
+
+   //we can also use tag helper asp-fo=""
+     <input asp-for="DeptId" /><br><br>
+
+ 
+ *@
+

@@ -1,0 +1,49 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>showCourses</title>
+</head>
+<body>
+
+
+    <div> courese in @Model.DeptName department </div>
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th> duration</th>
+                <th>add degree</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var crs in Model.Courses)
+            {
+                <tr>
+                    <td> @crs.Crs_Name</td>
+                    <td>@crs.Duration</td>
+                    <td>
+
+                        <a asp-action="AddDegree" asp-controller="DepartmentCourse"
+                           asp-route-CrsId="@crs.Id"
+                        asp-route-DeptId="@Model.DeptId"
+                        class="btn btn-info">Add Degreea</a>
+
+                    </td>
+
+
+                </tr>
+            }
+    
+ 
+</body>
+</html>

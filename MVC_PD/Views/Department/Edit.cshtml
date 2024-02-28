@@ -1,0 +1,27 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <form method="post">
+
+        @* <label asp-for="DeptId" ></label>
+        <input asp-for="DeptId" type="hidden"/><br><br> *@
+
+        <label asp-for="DeptName"></label>
+        <input asp-for="DeptName"><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>
