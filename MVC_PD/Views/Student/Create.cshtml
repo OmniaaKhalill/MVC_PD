@@ -1,7 +1,9 @@
-﻿@model Student
+﻿ @model Student 
 @{
     Layout = null;
-}
+    SelectList Deptlst = new SelectList(ViewBag.departments, "DeptId", "DeptName", 1);
+
+ }
 
 <!DOCTYPE html>
 

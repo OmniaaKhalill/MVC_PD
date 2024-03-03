@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_PD.Models;
+using MVC_PD.My_Filters;
 
 namespace MVC_PD.Controllers
 {
+    [MyExecptionHandling]
     public class CourseController : Controller
     {
-        PDContext db = new PDContext();
+        PDContext db = new();
         public IActionResult Index()
         {
             var model = db.Courses.ToList();

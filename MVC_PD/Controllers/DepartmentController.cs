@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_PD.Models;
+using MVC_PD.Repository;
 
 namespace MVC_PD.Controllers
 {
     public class DepartmentController : Controller
     {
-        PDContext db = new PDContext();
+       
+        DepartmentRepo deptRepo = new();
         public IActionResult Index()
         {
-            var model = db.Departments.ToList();
+            var model = deptRepo.GetAall();
             return View(model);
         }
 
@@ -22,14 +24,17 @@ namespace MVC_PD.Controllers
         [HttpPost]
         public IActionResult Create(Department model)
         {
-            if (model.DeptId != 0 && model.DeptName?.Length > 2)
+            if (ModelState.IsValid)
             {
-                db.Departments.Add(model);
-                db.SaveChanges();
+                deptRepo.Add(model);
+                
                 return RedirectToAction("Index");
             }
             else
+            {
+               
                 return View(model);
+            }
         }
 
         public IActionResult Details(int? id) //nullble to ensure i sent a value
@@ -38,7 +43,7 @@ namespace MVC_PD.Controllers
             {
                 return BadRequest();
             }
-            var model = db.Departments.SingleOrDefault(a => a.DeptId == id);
+            var model = deptRepo.GetById(id.Value);
             if (model == null)
             {
                 return NotFound();
@@ -56,7 +61,7 @@ namespace MVC_PD.Controllers
             {
                 return BadRequest();
             }
-            var model = db.Departments.FirstOrDefault(a => a.DeptId == id);
+            var model = deptRepo.GetById(id.Value);
             if (model == null)
             {
                 return NotFound();
@@ -66,11 +71,11 @@ namespace MVC_PD.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Department dept, int? id)
+        public IActionResult Edit(Department dept, int id)
         {
-            var old = db.Departments.FirstOrDefault(a => a.DeptId == id);
-            old.DeptName = dept.DeptName;
-            db.SaveChanges();
+           
+            dept.DeptId = id;
+            deptRepo.Update(dept);
 
             return RedirectToAction("Index");
         }
@@ -81,16 +86,14 @@ namespace MVC_PD.Controllers
             {
                 return BadRequest();
             }
-            var model = db.Departments.FirstOrDefault(a => a.DeptId == id);
-            if (model == null)
-            {
-                return NotFound();
-            }
+            //var model = deptRepo.GetById(id.Value);
+            //if (model == null)
+            //{
+            //    return NotFound();
+            //}
 
-            db.Departments.Remove(model);
-            db.SaveChanges();
-
-
+            deptRepo.Remove(id.Value);
+      
             return RedirectToAction("Index");
         }
 

@@ -2,7 +2,7 @@
 
 namespace MVC_PD.ViewModel
 {
-    public class  DepartmentCourse
+    public class  DepartmentCourseViewModel
     {
         public int?  DeptId { get; set; }
         public List<Course> AllCourses { get; set; } 
